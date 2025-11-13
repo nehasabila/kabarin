@@ -37,7 +37,7 @@ function App({ darkMode }) {
 
           {/* Kolom kanan */}
           <img
-            src=".\public\assets\Image\heroImage.png"
+            src="public/assets/Image/heroImage.png"
             alt="Hero Image"
             className="w-full max-w-[500px] ml-10 justify-self-center"
           />
@@ -158,7 +158,7 @@ function App({ darkMode }) {
 
           {/* Kolom kanan berisi gambar hero */}
           <img
-            src=".\public\assets\Image\chat.png"
+            src="public/assets/Image/chat.png"
             alt="Chat Image"
             className="w-full max-w-[350px]  ml-10 justify-self-center"
           />
