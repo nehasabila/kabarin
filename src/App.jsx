@@ -65,7 +65,7 @@ function App({ darkMode }) {
             </div>
 
             <img
-              src="public/assets/Image/heroImage.png"
+              src="/assets/Image/heroImage.png"
               alt="Hero Image"
               className="w-full max-w-[500px] ml-10 justify-self-center"
             />
