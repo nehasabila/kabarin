@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import News from "./News.jsx"; 
 import AboutUs from "./AboutUs.jsx"; 
 import NewsDetail from "./NewsDetail.jsx";
+import Events from "./Events.jsx";
 
 
 function Root() {
@@ -42,6 +43,7 @@ function Root() {
           <Route path="/news" element={<News darkMode={darkMode} />} />
           <Route path="/about-us" element={<AboutUs darkMode={darkMode} />} />
           <Route path="/news/:id" element={<NewsDetail darkMode={darkMode} />} />
+          <Route path="/events" element={<Events darkMode={darkMode} />} />
         </Routes>
 
         <Footer darkMode={darkMode} />

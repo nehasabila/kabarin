@@ -1,5 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { FiArrowLeft, FiHeart, FiMessageCircle, FiShare2 } from "react-icons/fi";
+import { useState } from "react";
+import {
+  FiArrowLeft,
+  FiHeart,
+  FiMessageCircle,
+  FiShare2,
+  FiBookmark,
+} from "react-icons/fi";
 
 const dummyNews = [
   {
@@ -9,7 +16,7 @@ const dummyNews = [
     date: "10 Nov 2025",
     image: "https://picsum.photos/900/500?random=1",
     content:
-      "Teknologi AI terus berkembang pesat di tahun 2025 dengan berbagai inovasi besar yang mengubah cara industri bekerja. Perusahaan besar berlomba mengintegrasikan kecerdasan buatan untuk meningkatkan efisiensi, keamanan, dan kenyamanan pengguna. Pemerintah juga mulai mengatur kebijakan baru terkait etika AI serta dampaknya terhadap lapangan kerja dan privasi.",
+      "Teknologi AI terus berkembang pesat di tahun 2025 ...",
   },
   {
     id: 2,
@@ -18,7 +25,7 @@ const dummyNews = [
     date: "9 Nov 2025",
     image: "https://picsum.photos/900/500?random=2",
     content:
-      "Pemerintah memperluas akses pendidikan digital untuk seluruh wilayah Indonesia. Platform pembelajaran online kini lebih mudah dijangkau masyarakat berkat subsidi internet dan peningkatan infrastruktur jaringan.",
+      "Pemerintah memperluas akses pendidikan digital ...",
   },
   {
     id: 3,
@@ -27,7 +34,7 @@ const dummyNews = [
     date: "8 Nov 2025",
     image: "https://picsum.photos/900/500?random=3",
     content:
-      "Tim nasional berhasil meraih kemenangan telak 3-0 melawan lawan berat di laga persahabatan internasional. Pelatih menyebut hasil ini berkat kerja sama tim yang semakin solid dan dukungan penuh dari para suporter.",
+      "Tim nasional berhasil meraih kemenangan telak ...",
   },
 ];
 
@@ -36,6 +43,28 @@ export default function NewsDetail({ darkMode }) {
   const navigate = useNavigate();
 
   const newsItem = dummyNews.find((n) => n.id === Number(id));
+
+  // STATE KOMENTAR
+  const [comments, setComments] = useState([]);
+  const [inputComment, setInputComment] = useState("");
+
+  const addComment = () => {
+    if (inputComment.trim() === "") return;
+
+    const newComment = {
+      text: inputComment,
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      avatar: `https://i.pravatar.cc/150?img=${Math.floor(
+        Math.random() * 70
+      )}`,
+    };
+
+    setComments([...comments, newComment]);
+    setInputComment("");
+  };
 
   if (!newsItem) {
     return (
@@ -74,11 +103,12 @@ export default function NewsDetail({ darkMode }) {
         <span className="text-blue-500 text-xs uppercase">
           {newsItem.category}
         </span>
-        <h1 className="text-2xl md:text-3xl font-bold mt-1">{newsItem.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold mt-1">
+          {newsItem.title}
+        </h1>
         <p className="text-sm text-gray-400 mt-1">{newsItem.date}</p>
       </div>
 
-      
       {/* Gambar Utama */}
       <img
         src={newsItem.image}
@@ -105,11 +135,77 @@ export default function NewsDetail({ darkMode }) {
           <FiHeart /> 122
         </button>
         <button className="flex items-center gap-2 hover:text-blue-500 transition">
-          <FiMessageCircle /> 35
+          <FiMessageCircle /> {comments.length}
         </button>
         <button className="flex items-center gap-2 hover:text-blue-500 transition">
           <FiShare2 /> Bagikan
         </button>
+        <button className="flex items-center gap-2 hover:text-blue-500 transition">
+          <FiBookmark /> Simpan
+        </button>
+      </div>
+
+      {/* --- KOLOM KOMENTAR --- */}
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold mb-4">Komentar</h2>
+
+        {/* Form Input Nama + Komentar */}
+        <div className="space-y-3 mb-4">
+
+
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={inputComment}
+              onChange={(e) => setInputComment(e.target.value)}
+              placeholder="Tulis komentar..."
+              className={`flex-1 px-4 py-2 rounded-md border ${
+                darkMode
+                  ? "bg-zinc-800 border-zinc-700 text-white"
+                  : "bg-white border-gray-300 text-black"
+              }`}
+            />
+            <button
+              onClick={addComment}
+              className="px-4 py-2 bg-[#1785D9] text-white rounded-md hover:bg-[#1472BC] transition"
+            >
+              Kirim
+            </button>
+          </div>
+        </div>
+
+        {/* Daftar Komentar */}
+        <div className="space-y-4">
+          {comments.length === 0 && (
+            <p className="text-sm text-gray-500">Belum ada komentar.</p>
+          )}
+
+          {comments.map((c, i) => (
+            <div
+              key={i}
+              className={`flex gap-3 p-3 rounded-lg border ${
+                darkMode
+                  ? "border-zinc-700 bg-zinc-800"
+                  : "border-gray-200 bg-gray-100"
+              }`}
+            >
+              <img
+                src={c.avatar}
+                alt="avatar"
+                className="w-10 h-10 rounded-full object-cover"
+              />
+
+              <div>
+                <div className="flex items-center gap-2">
+                  <p className="font-semibold">Jane Doe</p>
+                  <span className="text-xs text-gray-400">{c.time}</span>
+                </div>
+
+                <p className="text-sm mt-1">{c.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

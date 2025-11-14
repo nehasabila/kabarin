@@ -334,33 +334,65 @@ function NewsCard({ item, darkMode, navigate }) {
           </button>
         </div>
 
-        {/* KOMENTAR */}
+       {/* KOMENTAR */}
         {showComments && (
           <div className="mt-4 animate-fadeIn" onClick={(e) => e.stopPropagation()}>
-            <form onSubmit={handleCommentSubmit} className="flex gap-3 mb-3">
+
+            {/* FORM INPUT KOMENTAR */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (commentInput.trim() === "") return;
+
+                const newComment = {
+                  text: commentInput,
+                  name: "Jane Doe", // bisa diganti input nama nanti
+                  time: new Date().toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }),
+                  avatar: `https://i.pravatar.cc/40?img=${Math.floor(
+                    Math.random() * 70
+                  )}`,
+                };
+
+                setComments([...comments, newComment]);
+                setCommentInput("");
+              }}
+              className="flex gap-3 mb-3"
+            >
               <input
                 type="text"
                 value={commentInput}
                 onChange={(e) => setCommentInput(e.target.value)}
                 placeholder="Tulis komentar..."
-                className="flex-1 border rounded-full px-4 py-2 text-sm outline-none bg-gray-100"
+                className="flex-1 border rounded-full px-4 py-2 text-sm outline-none"
               />
               <button
                 type="submit"
-                className="px-3 py-2 bg-blue-500 text-white rounded-full text-sm hover:bg-blue-600 transition"
+                className="px-3 py-2 bg-[#1785D9] text-white rounded-full text-sm transition hover:bg-[#1472BC]"
               >
                 Kirim
               </button>
             </form>
 
-            <div className="space-y-2">
+            {/* LIST KOMENTAR — DIBATASI TINGGINYA + SCROLL */}
+            <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
               {comments.map((c, i) => (
                 <div key={i} className="flex gap-3 items-start">
                   <img
-                    src="https://i.pravatar.cc/30?img=2"
-                    className="w-6 h-6 rounded-full"
+                    src={c.avatar}
+                    className="w-8 h-8 mt-2 rounded-full object-cover"
                   />
-                  <p className="text-sm text-gray-500">{c}</p>
+
+                  <div className=" p-2 rounded-lg w-full">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-semibold">{c.name}</p>
+                      <span className="text-xs text-gray-500">{c.time}</span>
+                    </div>
+
+                    <p className="text-sm mt-1">{c.text}</p>
+                  </div>
                 </div>
               ))}
             </div>
