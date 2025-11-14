@@ -1,19 +1,28 @@
-import { FiInstagram, FiLinkedin, FiFacebook, FiX } from "/node_modules/react-icons/fi";
+import { FiInstagram, FiLinkedin, FiFacebook, FiX } from "react-icons/fi";
 
 const Footer = ({ darkMode }) => {
   return (
     <footer
       className={`
         w-full pt-14 transition-all duration-300 border-t
-        ${darkMode ? "bg-zinc-900 text-white border-zinc-700" : "bg-white text-black border-zinc-300"}
+        ${
+          darkMode
+            ? "bg-zinc-900 text-white border-zinc-700"
+            : "bg-white text-black border-zinc-300"
+        }
       `}
     >
-      <div className="max-w-7xl mx-auto ml-5 px-10 grid grid-cols-8 md:grid-cols-8 gap-12 pb-12">
-
+      <div
+        className="
+        max-w-7xl mx-auto px-6 
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 
+        gap-10 pb-12
+      "
+      >
         {/* Kolom kiri */}
-        <div className="col-span-4 md:col-span-4">
+        <div className="col-span-4">
           <h1 className="text-3xl font-bold text-[#1785D9]">Kabarin.</h1>
-          <p className="mt-5 text-sm leading-relaxed opacity-85">
+          <p className="mt-5 text-sm leading-relaxed opacity-85 max-w-md">
             Kami mengutamakan integritas dalam setiap laporan untuk menghadirkan
             berita yang utuh dan mendalam.
           </p>
@@ -28,20 +37,36 @@ const Footer = ({ darkMode }) => {
         </div>
 
         {/* Kolom tengah */}
-        <div className="ml-25  col-span-2 md:col-span-2">
+        <div className="col-span-2">
           <h3 className="font-semibold text-lg mb-4">Kabarin</h3>
-          <ul className="space-y-4 text-sm">
-            <li><a href="#" className="hover:underline">Tentang Kami</a></li>
-            <li><a href="#" className="hover:underline">Syarat dan Ketentuan</a></li>
-            <li><a href="#" className="hover:underline">Kebijakan Privasi</a></li>
-            <li><a href="#" className="hover:underline">Laporan Kendala</a></li>
+          <ul className="space-y-3 text-sm">
+            <li>
+              <a href="#" className="hover:underline">
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Syarat dan Ketentuan
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Kebijakan Privasi
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Laporan Kendala
+              </a>
+            </li>
           </ul>
         </div>
 
         {/* Kolom kanan */}
-        <div className=" col-span-2 md:col-span-2">
+        <div className="col-span-2">
           <h3 className="font-semibold text-lg mb-4">Hubungi Kami</h3>
-          <ul className="space-y-4 text-sm opacity-90">
+          <ul className="space-y-3 text-sm opacity-90">
             <li>adminkabarin@gmail.com</li>
             <li>+6281902100989</li>
           </ul>
@@ -49,7 +74,11 @@ const Footer = ({ darkMode }) => {
       </div>
 
       {/* Bawah Footer */}
-      <div className={`text-center text-xs py-4 ${darkMode ? "bg-zinc-800" : "bg-zinc-100"}`}>
+      <div
+        className={`text-center text-xs py-4 ${
+          darkMode ? "bg-zinc-800" : "bg-zinc-100"
+        }`}
+      >
         © 2025 Neha Sabila Nazmira
       </div>
     </footer>
