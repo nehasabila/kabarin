@@ -11,8 +11,8 @@ import {
 
 function News({ darkMode }) {
   const [filter, setFilter] = useState("terbaru");
+  const [category, setCategory] = useState("Semua");
 
-  // 🔥 LIMIT BERITA + INFINITE SCROLL
   const [limit, setLimit] = useState(5);
   const listRef = useRef(null);
 
@@ -82,6 +82,87 @@ function News({ darkMode }) {
       likes: 170,
       views: 450,
     },
+    {
+      id: 8,
+      title: "Perusahaan Teknologi Indonesia Kembangkan Chip Lokal",
+      category: "Teknologi",
+      date: "11 Nov 2025",
+      image: "https://picsum.photos/600/400?random=8",
+      likes: 190,
+      views: 450,
+    },
+    {
+      id: 9,
+      title: "Universitas Besar Terapkan Kurikulum AI",
+      category: "Edukasi",
+      date: "10 Nov 2025",
+      image: "https://picsum.photos/600/400?random=9",
+      likes: 120,
+      views: 300,
+    },
+    {
+      id: 10,
+      title: "Timnas U-23 Menang Telak di Laga Persahabatan",
+      category: "Olahraga",
+      date: "9 Nov 2025",
+      image: "https://picsum.photos/600/400?random=10",
+      likes: 260,
+      views: 600,
+    },
+    {
+      id: 11,
+      title: "Pasar Saham Menguat Setelah Pengumuman Kebijakan Baru",
+      category: "Ekonomi",
+      date: "8 Nov 2025",
+      image: "https://picsum.photos/600/400?random=11",
+      likes: 170,
+      views: 480,
+    },
+    {
+      id: 12,
+      title: "Film Animasi Lokal Mendunia",
+      category: "Hiburan",
+      date: "7 Nov 2025",
+      image: "https://picsum.photos/600/400?random=12",
+      likes: 300,
+      views: 750,
+    },
+    {
+      id: 13,
+      title: "Startup Kesehatan Luncurkan Aplikasi Cek Kesehatan Online",
+      category: "Kesehatan",
+      date: "7 Nov 2025",
+      image: "https://picsum.photos/600/400?random=13",
+      likes: 140,
+      views: 350,
+    },
+    {
+      id: 14,
+      title: "Peneliti Temukan Spesies Baru di Laut Dalam",
+      category: "Sains",
+      date: "6 Nov 2025",
+      image: "https://picsum.photos/600/400?random=14",
+      likes: 220,
+      views: 500,
+    },
+    {
+      id: 15,
+      title: "Perkembangan Mobil Listrik Semakin Pesat",
+      category: "Otomotif",
+      date: "6 Nov 2025",
+      image: "https://picsum.photos/600/400?random=15",
+      likes: 210,
+      views: 440,
+    },
+    {
+      id: 16,
+      title: "Pariwisata Bali Mulai Pulih",
+      category: "Wisata",
+      date: "5 Nov 2025",
+      image: "https://picsum.photos/600/400?random=16",
+      likes: 300,
+      views: 780,
+    },
   ];
 
   const trendingNews = [
@@ -92,14 +173,20 @@ function News({ darkMode }) {
     { id: 5, title: "Fenomena Cuaca Ekstrem Diprediksi Berlanjut" },
   ];
 
-  // Urutkan berita sesuai filter
-  const sortedNews = [...newsData].sort((a, b) => {
+  // 🎯 Filter berdasarkan kategori
+  const filteredNews =
+    category === "Semua"
+      ? newsData
+      : newsData.filter((item) => item.category === category);
+
+  // 🎯 Sorting berita setelah difilter
+  const sortedNews = [...filteredNews].sort((a, b) => {
     if (filter === "populer") return b.views - a.views;
     if (filter === "disukai") return b.likes - a.likes;
     return new Date(b.date) - new Date(a.date);
   });
 
-  // 🔥 INFINITE SCROLL DI DALAM ".news-scroll"
+  // 🔥 Infinite scroll
   useEffect(() => {
     const container = listRef.current;
     if (!container) return;
@@ -119,6 +206,27 @@ function News({ darkMode }) {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [sortedNews.length]);
 
+  // Reset limit saat kategori berubah
+  useEffect(() => {
+    setLimit(5);
+  }, [category]);
+
+  const categories = [
+    "Semua",
+    "Teknologi",
+    "Edukasi",
+    "Olahraga",
+    "Nasional",
+    "Internasional",
+    "Hiburan",
+    "Ekonomi",
+    "Kesehatan",
+    "Politik",
+    "Wisata",
+    "Sains",
+    "Otomotif",
+  ];
+
   return (
     <div
       className={`${
@@ -128,19 +236,17 @@ function News({ darkMode }) {
       {/* NAVBAR KATEGORI */}
       <div className="w-full border-b border-gray-600 pb-3 mb-6">
         <ul className="flex gap-8 text-sm font-medium overflow-x-auto whitespace-nowrap">
-          <li className="text-blue-400 cursor-pointer">Semua</li>
-          <li className="cursor-pointer hover:text-blue-400">Teknologi</li>
-          <li className="cursor-pointer hover:text-blue-400">Edukasi</li>
-          <li className="cursor-pointer hover:text-blue-400">Olahraga</li>
-          <li className="cursor-pointer hover:text-blue-400">Nasional</li>
-          <li className="cursor-pointer hover:text-blue-400">Internasional</li>
-          <li className="cursor-pointer hover:text-blue-400">Hiburan</li>
-          <li className="cursor-pointer hover:text-blue-400">Ekonomi</li>
-          <li className="cursor-pointer hover:text-blue-400">Kesehatan</li>
-          <li className="cursor-pointer hover:text-blue-400">Politik</li>
-          <li className="cursor-pointer hover:text-blue-400">Wisata</li>
-          <li className="cursor-pointer hover:text-blue-400">Sains</li>
-          <li className="cursor-pointer hover:text-blue-400">Otomotif</li>
+          {categories.map((cat) => (
+            <li
+              key={cat}
+              onClick={() => setCategory(cat)}
+              className={`cursor-pointer ${
+                category === cat ? "text-blue-400" : "hover:text-blue-400"
+              }`}
+            >
+              {cat}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -150,32 +256,34 @@ function News({ darkMode }) {
           darkMode ? "border-zinc-700" : "border-zinc-300"
         }`}
       >
-        {/* BERITA UTAMA */}
-        <div
-          onClick={() => navigate(`/news/${newsData[0].id}`)}
-          className={`md:col-span-2 rounded-lg overflow-hidden border shadow-lg cursor-pointer hover:opacity-90 transition ${
-            darkMode ? "border-zinc-700" : "border-zinc-300"
-          }`}
-        >
-          <img
-            src={newsData[0].image}
-            className="w-full h-[350px] object-cover"
-            alt=""
-          />
-          <div className="p-4">
-            <span className="text-xs text-blue-400">{newsData[0].category}</span>
-            <h2 className="text-lg font-semibold mt-1">{newsData[0].title}</h2>
-            <p className="text-sm text-gray-400">{newsData[0].date}</p>
-            <p className="text-sm text-gray-500 mt-2">
-              Teknologi AI semakin berkembang pesat dengan berbagai inovasi baru
-              yang mempengaruhi industri global...
-            </p>
+        {/* BERITA UTAMA (gunakan filteredNews[0]) */}
+        {filteredNews.length > 0 && (
+          <div
+            onClick={() => navigate(`/news/${filteredNews[0].id}`)}
+            className={`md:col-span-2 rounded-lg overflow-hidden border shadow-lg cursor-pointer hover:opacity-90 transition ${
+              darkMode ? "border-zinc-700" : "border-zinc-300"
+            }`}
+          >
+            <img
+              src={filteredNews[0].image}
+              className="w-full h-[350px] object-cover"
+              alt=""
+            />
+            <div className="p-4">
+              <span className="text-xs text-blue-400">
+                {filteredNews[0].category}
+              </span>
+              <h2 className="text-lg font-semibold mt-1">
+                {filteredNews[0].title}
+              </h2>
+              <p className="text-sm text-gray-400">{filteredNews[0].date}</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 4 BERITA KECIL */}
         <div className="grid grid-cols-2 gap-4">
-          {newsData.slice(1, 5).map((item) => (
+          {filteredNews.slice(1, 5).map((item) => (
             <div
               key={item.id}
               onClick={() => navigate(`/news/${item.id}`)}
@@ -204,32 +312,33 @@ function News({ darkMode }) {
 
       {/* GRID BERITA BAWAH */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-10 pt-7">
-        {/* SIDEBAR KIRI */}
+        {/* Sidebar kiri */}
         <div className="col-span-3 md:col-span-3 mt-4 sticky top-24 h-fit">
           <SidebarBox
             darkMode={darkMode}
             icon={<FiAlertTriangle />}
             title="Laporkan Berita Hoaks"
-            desc="Temukan berita yang terasa mencurigakan? Bantu kami menjaga informasi tetap bersih dan akurat."
+            desc="Temukan berita yang mencurigakan? Laporkan kepada kami."
             buttonText="Laporkan Sekarang"
           />
 
           <SidebarBox
             darkMode={darkMode}
             icon={<FiSend />}
-            title="Kirim Berita & Informasi"
-            desc="Punya laporan, opini publik, atau kejadian penting di sekitar kamu? Sampaikan ke redaksi kami."
+            title="Kirim Berita"
+            desc="Punya informasi penting? Kirimkan ke redaksi kami."
             buttonText="Kirim Berita"
           />
         </div>
 
-        {/* DAFTAR BERITA (INFINITE SCROLL) */}
+        {/* Daftar berita */}
         <div
           ref={listRef}
           className="md:col-span-6 space-y-6 max-h-[200vh] overflow-y-auto pr-3 news-scroll"
         >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Daftar Berita</h2>
+
             <div className="flex gap-2">
               {[
                 { label: "Terbaru", value: "terbaru" },
@@ -253,7 +362,7 @@ function News({ darkMode }) {
             </div>
           </div>
 
-          {/* 🔥 HANYA TAMPILKAN BERITA HINGGA LIMIT */}
+          {/* List berita */}
           {sortedNews.slice(0, limit).map((item) => (
             <NewsCard
               key={item.id}
@@ -263,15 +372,12 @@ function News({ darkMode }) {
             />
           ))}
 
-          {/* Loading */}
           {limit < sortedNews.length && (
-            <p className="text-center text-sm py-3 opacity-70">
-              Memuat berita...
-            </p>
+            <p className="text-center text-sm py-3 opacity-70">Memuat berita...</p>
           )}
         </div>
 
-        {/* TRENDING */}
+        {/* Trending */}
         <div className="col-span-3 md:col-span-3 mt-11 sticky top-24 h-fit">
           <TrendingList darkMode={darkMode} trendingNews={trendingNews} />
         </div>
@@ -280,7 +386,7 @@ function News({ darkMode }) {
   );
 }
 
-/* === COMPONENTS LAIN TIDAK DIUBAH === */
+/* === COMPONENTS === */
 function SidebarBox({ darkMode, icon, title, desc, buttonText }) {
   return (
     <div
@@ -291,11 +397,7 @@ function SidebarBox({ darkMode, icon, title, desc, buttonText }) {
       }`}
     >
       <h3 className="text-lg font-bold mb-2">{title}</h3>
-      <p
-        className={`text-sm mb-4 ${
-          darkMode ? "text-zinc-400" : "text-zinc-600"
-        }`}
-      >
+      <p className={`text-sm mb-4 ${darkMode ? "text-zinc-400" : "text-zinc-600"}`}>
         {desc}
       </p>
 
@@ -346,7 +448,6 @@ function NewsCard({ item, darkMode, navigate }) {
           Teknologi AI semakin berkembang pesat dengan berbagai inovasi baru...
         </p>
 
-        {/* LIKE / KOMEN / SHARE / SIMPAN */}
         <div
           className="flex justify-between text-gray-600 text-sm mt-3 border-t pt-3 select-none"
           onClick={(e) => e.stopPropagation()}
@@ -385,10 +486,8 @@ function NewsCard({ item, darkMode, navigate }) {
           </button>
         </div>
 
-        {/* KOMENTAR */}
         {showComments && (
           <div className="mt-4 animate-fadeIn" onClick={(e) => e.stopPropagation()}>
-            {/* FORM KOMENTAR */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -426,14 +525,10 @@ function NewsCard({ item, darkMode, navigate }) {
               </button>
             </form>
 
-            {/* LIST KOMENTAR */}
             <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
               {comments.map((c, i) => (
                 <div key={i} className="flex gap-3 items-start">
-                  <img
-                    src={c.avatar}
-                    className="w-8 h-8 mt-2 rounded-full object-cover"
-                  />
+                  <img src={c.avatar} className="w-8 h-8 mt-2 rounded-full object-cover" />
                   <div className="p-2 rounded-lg w-full">
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-semibold">{c.name}</p>
@@ -446,6 +541,7 @@ function NewsCard({ item, darkMode, navigate }) {
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
@@ -463,14 +559,11 @@ function TrendingList({ darkMode, trendingNews }) {
       <h3 className="text-lg font-bold pb-3">Trending Hari Ini</h3>
       <ul className="space-y-3">
         {trendingNews.map((item, index) => (
-          <li
-            key={item.id}
-            className="flex items-start gap-3 cursor-pointer group"
-          >
+          <li key={item.id} className="flex items-start gap-3 cursor-pointer group">
             <span className="text-blue-500 font-semibold text-lg leading-none">
               {index + 1}.
             </span>
-            <p className="text-sm leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+            <p className="text-sm leading-snug group-hover:text-blue-600 transition">
               {item.title}
             </p>
           </li>

@@ -89,7 +89,7 @@ function VideoGallery({ darkMode }) {
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-zinc-200 p-2 rounded-full opacity-90 group-hover:scale-110 transition">
+              <div className="bg-zinc-300 p-2 rounded-full opacity-90 group-hover:scale-110 transition">
                 ▶
               </div>
             </div>

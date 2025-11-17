@@ -85,7 +85,7 @@ export default function NewsDetail({ darkMode }) {
         <h2 className="text-2xl font-semibold mb-4">Berita tidak ditemukan</h2>
         <button
           onClick={() => navigate(-1)}
-          className="px-4 py-2 border rounded-md text-sm hover:bg-blue-500 hover:text-white transition"
+          className="px-4 py-2 border rounded-md text-sm hover:bg-[#1785D9] hover:text-white transition"
         >
           Kembali
         </button>
