@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiHeart,
@@ -11,6 +11,11 @@ import {
 
 function News({ darkMode }) {
   const [filter, setFilter] = useState("terbaru");
+
+  // 🔥 LIMIT BERITA + INFINITE SCROLL
+  const [limit, setLimit] = useState(5);
+  const listRef = useRef(null);
+
   const navigate = useNavigate();
 
   const newsData = [
@@ -59,6 +64,24 @@ function News({ darkMode }) {
       likes: 200,
       views: 600,
     },
+    {
+      id: 6,
+      title: "Startup AI Indonesia Mendapat Pendanaan Baru",
+      category: "Teknologi",
+      date: "5 Nov 2025",
+      image: "https://picsum.photos/600/400?random=6",
+      likes: 150,
+      views: 500,
+    },
+    {
+      id: 7,
+      title: "Event Olahraga Internasional Digelar di Jakarta",
+      category: "Olahraga",
+      date: "4 Nov 2025",
+      image: "https://picsum.photos/600/400?random=7",
+      likes: 170,
+      views: 450,
+    },
   ];
 
   const trendingNews = [
@@ -75,6 +98,26 @@ function News({ darkMode }) {
     if (filter === "disukai") return b.likes - a.likes;
     return new Date(b.date) - new Date(a.date);
   });
+
+  // 🔥 INFINITE SCROLL DI DALAM ".news-scroll"
+  useEffect(() => {
+    const container = listRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const bottom =
+        container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+
+      if (bottom) {
+        setLimit((prev) =>
+          prev + 5 > sortedNews.length ? sortedNews.length : prev + 5
+        );
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [sortedNews.length]);
 
   return (
     <div
@@ -132,7 +175,7 @@ function News({ darkMode }) {
 
         {/* 4 BERITA KECIL */}
         <div className="grid grid-cols-2 gap-4">
-          {newsData.slice(1).map((item) => (
+          {newsData.slice(1, 5).map((item) => (
             <div
               key={item.id}
               onClick={() => navigate(`/news/${item.id}`)}
@@ -160,9 +203,9 @@ function News({ darkMode }) {
       </div>
 
       {/* GRID BERITA BAWAH */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-25 pt-7">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-10 pt-7">
         {/* SIDEBAR KIRI */}
-        <div className="col-span-3 md:col-span-3 mt-4">
+        <div className="col-span-3 md:col-span-3 mt-4 sticky top-24 h-fit">
           <SidebarBox
             darkMode={darkMode}
             icon={<FiAlertTriangle />}
@@ -180,8 +223,11 @@ function News({ darkMode }) {
           />
         </div>
 
-        {/* DAFTAR BERITA */}
-        <div className="md:col-span-6 space-y-6">
+        {/* DAFTAR BERITA (INFINITE SCROLL) */}
+        <div
+          ref={listRef}
+          className="md:col-span-6 space-y-6 max-h-[200vh] overflow-y-auto pr-3 news-scroll"
+        >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Daftar Berita</h2>
             <div className="flex gap-2">
@@ -207,13 +253,26 @@ function News({ darkMode }) {
             </div>
           </div>
 
-          {sortedNews.map((item) => (
-            <NewsCard key={item.id} item={item} darkMode={darkMode} navigate={navigate} />
+          {/* 🔥 HANYA TAMPILKAN BERITA HINGGA LIMIT */}
+          {sortedNews.slice(0, limit).map((item) => (
+            <NewsCard
+              key={item.id}
+              item={item}
+              darkMode={darkMode}
+              navigate={navigate}
+            />
           ))}
+
+          {/* Loading */}
+          {limit < sortedNews.length && (
+            <p className="text-center text-sm py-3 opacity-70">
+              Memuat berita...
+            </p>
+          )}
         </div>
 
-        {/* TRENDING NEWS */}
-        <div className="col-span-3 md:col-span-3 mt-11">
+        {/* TRENDING */}
+        <div className="col-span-3 md:col-span-3 mt-11 sticky top-24 h-fit">
           <TrendingList darkMode={darkMode} trendingNews={trendingNews} />
         </div>
       </div>
@@ -221,8 +280,7 @@ function News({ darkMode }) {
   );
 }
 
-/* === COMPONENTS === */
-
+/* === COMPONENTS LAIN TIDAK DIUBAH === */
 function SidebarBox({ darkMode, icon, title, desc, buttonText }) {
   return (
     <div
@@ -267,13 +325,6 @@ function NewsCard({ item, darkMode, navigate }) {
   const handleLike = () => {
     setLikes(liked ? likes - 1 : likes + 1);
     setLiked(!liked);
-  };
-
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    if (commentInput.trim() === "") return;
-    setComments([...comments, commentInput]);
-    setCommentInput("");
   };
 
   return (
@@ -334,11 +385,10 @@ function NewsCard({ item, darkMode, navigate }) {
           </button>
         </div>
 
-       {/* KOMENTAR */}
+        {/* KOMENTAR */}
         {showComments && (
           <div className="mt-4 animate-fadeIn" onClick={(e) => e.stopPropagation()}>
-
-            {/* FORM INPUT KOMENTAR */}
+            {/* FORM KOMENTAR */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -346,7 +396,7 @@ function NewsCard({ item, darkMode, navigate }) {
 
                 const newComment = {
                   text: commentInput,
-                  name: "Jane Doe", // bisa diganti input nama nanti
+                  name: "Jane Doe",
                   time: new Date().toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
@@ -376,7 +426,7 @@ function NewsCard({ item, darkMode, navigate }) {
               </button>
             </form>
 
-            {/* LIST KOMENTAR — DIBATASI TINGGINYA + SCROLL */}
+            {/* LIST KOMENTAR */}
             <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
               {comments.map((c, i) => (
                 <div key={i} className="flex gap-3 items-start">
@@ -384,13 +434,11 @@ function NewsCard({ item, darkMode, navigate }) {
                     src={c.avatar}
                     className="w-8 h-8 mt-2 rounded-full object-cover"
                   />
-
-                  <div className=" p-2 rounded-lg w-full">
+                  <div className="p-2 rounded-lg w-full">
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-semibold">{c.name}</p>
                       <span className="text-xs text-gray-500">{c.time}</span>
                     </div>
-
                     <p className="text-sm mt-1">{c.text}</p>
                   </div>
                 </div>

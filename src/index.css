@@ -21,3 +21,30 @@
 .animate-fadeIn {
   animation: fadeIn .25s ease-out;
 }
+
+/* ===== Scrollbar khusus daftar berita ===== */
+.news-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.news-scroll::-webkit-scrollbar-track {
+  background: #e5e5e5;       /* track (warna belakang) */
+  border-radius: 8px;
+}
+
+.news-scroll::-webkit-scrollbar-thumb {
+  background: rgb(177, 177, 177);       /* warna scroll batang */
+  border-radius: 8px;
+}
+
+.news-scroll::-webkit-scrollbar-thumb:hover {
+  background: #e6e6e6;
+}
+.dark .news-scroll::-webkit-scrollbar-track {
+  background: #27272a;
+}
+
+.dark .news-scroll::-webkit-scrollbar-thumb {
+  background: #454545;
+}
+
