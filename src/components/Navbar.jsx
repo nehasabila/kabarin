@@ -48,7 +48,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
           {/* === KIRI: LOGO + MENU (Desktop) === */}
           <div className="flex items-center gap-8">
-            <h1 className="text-3xl font-bold text-[#1785D9]">Kabarin.</h1>
+            <img  src="/assets/Image/logo.png" alt="logo" className="max-w-[150px]" />
+            {/* <h1 className="text-3xl font-bold text-[#1785D9]">Kabarin.</h1> */}
 
             {/* DESKTOP MENU */}
             <div className="hidden md:flex items-center gap-6 text-sm font-medium">

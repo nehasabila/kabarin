@@ -3,7 +3,7 @@ import { FiInstagram, FiLinkedin, FiFacebook, FiX } from "react-icons/fi";
 const Footer = ({ darkMode }) => {
   return (
     <footer
-      className={`
+      className={`a
         w-full pt-14 transition-all duration-300 border-t
         ${
           darkMode
@@ -14,14 +14,15 @@ const Footer = ({ darkMode }) => {
     >
       <div
         className="
-        max-w-7xl mx-auto px-6 
+        max-w-7xl mx-auto px-10 
         grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 
         gap-10 pb-12
       "
       >
         {/* Kolom kiri */}
         <div className="col-span-4">
-          <h1 className="text-3xl font-bold text-[#1785D9]">Kabarin.</h1>
+          {/* <h1 className="text-3xl font-bold text-[#1785D9]">Kabarin.</h1> */}
+          <img  src="/assets/Image/logo.png" alt="logo" className="max-w-[180px]" />
           <p className="mt-5 text-sm leading-relaxed opacity-85 max-w-md">
             Kami mengutamakan integritas dalam setiap laporan untuk menghadirkan
             berita yang utuh dan mendalam.
