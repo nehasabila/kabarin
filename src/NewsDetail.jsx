@@ -95,14 +95,14 @@ export default function NewsDetail({ darkMode }) {
 
   return (
     <div
-      className={`min-h-screen px-6 md:px-20 py-10 transition-colors duration-300 ${
+      className={`min-h-screen px-6 md:px-20 py-10 mt-15 transition-colors duration-300 ${
         darkMode ? "bg-zinc-900 text-white" : "bg-white text-black"
       }`}
     >
       {/* Tombol Kembali */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 mb-6 text-sm text-blue-500 hover:underline"
+        className="flex items-center gap-2 mb-6 text-sm text-[#1785D9] hover:underline"
       >
         <FiArrowLeft /> Kembali ke Berita
       </button>
