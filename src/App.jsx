@@ -60,7 +60,7 @@ function App({ darkMode }) {
               </p>
 
               <button className="px-10 py-2 my-5 mb-20 mx-5 rounded-lg text-sm font-medium transition bg-[#1785D9] hover:bg-[#1472BC] text-white">
-                Get Started
+                Baca Sekarang
               </button>
             </div>
 
