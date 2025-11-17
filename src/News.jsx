@@ -311,9 +311,10 @@ function News({ darkMode }) {
       </div>
 
       {/* GRID BERITA BAWAH */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-10 pt-7">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-5 pt-7">
         {/* Sidebar kiri */}
-        <div className="col-span-3 md:col-span-3 mt-4 sticky top-24 h-fit">
+        <div className="order-2 md:order-1 col-span-3 md:col-span-3 mt-2 md:sticky md:mt-5 mb-10 md:top-17 h-fit">
+
           <SidebarBox
             darkMode={darkMode}
             icon={<FiAlertTriangle />}
@@ -334,9 +335,15 @@ function News({ darkMode }) {
         {/* Daftar berita */}
         <div
           ref={listRef}
-          className="md:col-span-6 space-y-6 max-h-[200vh] overflow-y-auto pr-3 news-scroll"
+          className="order-3 md:order-2 md:col-span-6 col-span-3 space-y-6 max-h-[200vh] overflow-y-auto pr-0 md:pr-3 news-scroll"
         >
-          <div className="flex justify-between items-center mb-4">
+
+          <div
+            className={`flex justify-between items-center mb-4
+                        sticky top-0 z-20 py-3
+                        ${darkMode ? "bg-zinc-900" : "bg-white"}`}
+          >
+
             <h2 className="text-lg font-semibold">Daftar Berita</h2>
 
             <div className="flex gap-2">
@@ -378,7 +385,8 @@ function News({ darkMode }) {
         </div>
 
         {/* Trending */}
-        <div className="col-span-3 md:col-span-3 mt-11 sticky top-24 h-fit">
+        <div className="order-1 md:order-3 col-span-3 md:col-span-3 mt-6 md:mt-10 md:sticky md:top-24 h-fit">
+              
           <TrendingList darkMode={darkMode} trendingNews={trendingNews} />
         </div>
       </div>
@@ -459,7 +467,7 @@ function NewsCard({ item, darkMode, navigate }) {
             }`}
           >
             <FiHeart className="text-lg" />
-            <span>{likes}</span>
+            <span className="md:inline">{likes}</span>
           </button>
 
           <button
@@ -467,12 +475,12 @@ function NewsCard({ item, darkMode, navigate }) {
             className="flex items-center gap-2 px-3 py-2 hover:text-blue-600 transition"
           >
             <FiMessageCircle className="text-lg" />
-            <span>{comments.length}</span>
+            <span className="md:inline">{comments.length}</span>
           </button>
 
           <button className="flex items-center gap-2 px-3 py-2 hover:text-blue-600 transition">
             <FiShare2 className="text-lg" />
-            <span>Bagikan</span>
+            <span className="hidden md:inline">Bagikan</span>
           </button>
 
           <button
@@ -482,7 +490,9 @@ function NewsCard({ item, darkMode, navigate }) {
             }`}
           >
             <FiBookmark className="text-lg" />
-            <span>{saved ? "Disimpan" : "Simpan"}</span>
+            <span className="hidden md:inline">
+              {saved ? "Disimpan" : "Simpan"}
+            </span>
           </button>
         </div>
 
