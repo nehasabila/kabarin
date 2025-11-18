@@ -14,25 +14,25 @@
 
 ## Instalation
 
-# Clone repository
-git clone https://github.com/username/kabarin.git
+#### Clone repository
+$ git clone https://github.com/username/kabarin.git
 
-# Masuk ke folder proyek
-cd kabarin
+#### Masuk ke folder proyek
+$ cd kabarin
 
-# Install dependencies
-npm install
-# atau
-yarn install
+#### Install dependencies
+$ npm install
+#### atau
+$ yarn install
 
-# Menjalankan development server
-npm run dev
-# atau
-yarn dev
+#### Menjalankan development server
+$ npm run dev
+#### atau
+$ yarn dev
 
 ## Documentation
 
-## Website preview
+#### Website preview
 `https://kabarin.vercel.app/`
 
 <h1 align="center">
