@@ -28,13 +28,13 @@ Kabarin adalah portal berita modern yang dibangun menggunakan React dan Tailwind
 # Clone repository
 git clone https://github.com/username/kabarin.git
 
-# Masuk ke folder proyek
-cd kabarin
+#### Masuk ke folder proyek
+$ cd kabarin
 
-# Install dependencies
-npm install
-# atau
-yarn install
+#### Install dependencies
+$ npm install
+#### atau
+$ yarn install
 
 # Menjalankan development server
 npm run dev
