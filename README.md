@@ -1,19 +1,30 @@
-# Kabarin | Portal Berita
+# Kabarin | Portal Berita Modern
 
-- React: 19.1.1
-- React DOM: 19.1.1
-- React Router DOM: 7.9.5
-- Tailwind CSS: 4.1.16
-- React Icons: 5.5.0
+Kabarin adalah portal berita modern yang dibangun menggunakan React dan Tailwind CSS. Aplikasi ini menghadirkan mode gelap/terang, infinite scroll, serta desain responsif untuk pengalaman pengguna yang nyaman di berbagai perangkat.
 
-## Features
+---
 
-- Dark Mode/Light Mode
-- Infinite Scroll
-- Responsive Layout
+## 🚀 Tech Stack
 
-## Instalation
+- **React**: 19.1.1  
+- **React DOM**: 19.1.1  
+- **React Router DOM**: 7.9.5  
+- **Tailwind CSS**: 4.1.16  
+- **React Icons**: 5.5.0  
 
+---
+
+## ✨ Features
+
+- 🌙 Dark Mode / Light Mode  
+- 🔄 Infinite Scroll  
+- 📱 Responsive Layout  
+
+---
+
+## 🔧 Installation
+
+```bash
 # Clone repository
 git clone https://github.com/username/kabarin.git
 
@@ -29,15 +40,28 @@ yarn install
 npm run dev
 # atau
 yarn dev
+```
 
-## Documentation
+## 📚 Documentation
 
-## Website preview
-`https://kabarin.vercel.app/`
+Dokumentasi mencakup fitur utama, navigasi, serta struktur aplikasi. Dokumentasi lanjutan dapat ditambahkan pada folder `/docs`.
 
-<h1 align="center">
-    <img alt="" src="/assets/Image/home.png" />
-</h1>
-<h1 align="center">
-    <img alt="" src="/assets/Image/news.png" />
-</h1>
+---
+
+## 🌐 Website Preview
+
+Coba aplikasi secara langsung melalui link berikut:
+
+**https://kabarin.vercel.app/**
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page  
+![Home Preview](assets/Image/home.png)
+
+### 📰 News Detail Page  
+![News Preview](assets/Image/news.png)
+
+---
