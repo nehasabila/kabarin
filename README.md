@@ -44,24 +44,20 @@ yarn dev
 
 ## 📚 Documentation
 
-Dokumentasi mencakup fitur utama, navigasi, serta struktur aplikasi. Dokumentasi lanjutan dapat ditambahkan pada folder `/docs`.
-
----
-
-## 🌐 Website Preview
+### 🌐 Website Preview
 
 Coba aplikasi secara langsung melalui link berikut:
 
 **https://kabarin.vercel.app/**
 
----
+### 📸 Screenshots
 
-## 📸 Screenshots
+#### 🏠 Home Page  
+![Home Preview](public\assets\Image\home.png)
 
-### 🏠 Home Page  
-![Home Preview](assets/Image/home.png)
-
-### 📰 News Detail Page  
-![News Preview](assets/Image/news.png)
+#### 📰 News Detail Page  
+![News Preview](public\assets\Image\news.png)
 
 ---
+
+

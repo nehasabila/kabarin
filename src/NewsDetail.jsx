@@ -1,3 +1,4 @@
+import { newsData } from "./data/newsData.js";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -8,50 +9,11 @@ import {
   FiBookmark,
 } from "react-icons/fi";
 
-const dummyNews = [
-  {
-    id: 1,
-    title: "Teknologi AI Meningkat Pesat di Tahun 2025",
-    category: "Teknologi",
-    date: "10 Nov 2025",
-    image: "https://picsum.photos/900/500?random=1",
-    content:
-      "Teknologi kecerdasan buatan (AI) mengalami peningkatan pesat sepanjang tahun 2025. Berbagai perusahaan global berlomba-lomba menghadirkan inovasi baru yang semakin mempermudah pekerjaan manusia. Perkembangan ini tidak hanya terjadi pada sektor industri, namun juga merambah ke layanan publik, pendidikan, kesehatan, hingga teknologi rumah tangga. " +
-      "Salah satu tren terbesar adalah penggunaan AI generatif yang mampu menciptakan konten berkualitas tinggi dalam hitungan detik, mulai dari teks, gambar, hingga video realistis. Banyak perusahaan mengintegrasikan sistem tersebut untuk meningkatkan efisiensi kerja dan mengurangi biaya operasional. Di sisi lain, pemerintah di berbagai negara juga mulai menetapkan regulasi baru guna memastikan penggunaan AI tetap aman dan tidak disalahgunakan. " +
-      "Pakar teknologi memprediksi bahwa dalam lima tahun ke depan, AI akan semakin menyatu dengan kehidupan sehari-hari dan menjadi bagian penting dalam pengambilan keputusan di berbagai sektor. Namun demikian, tantangan terkait etika, keamanan data, dan privasi tetap menjadi perhatian utama dunia.",
-  },
-  
-  {
-    id: 2,
-    title: "Pendidikan Digital Semakin Diperluas",
-    category: "Edukasi",
-    date: "9 Nov 2025",
-    image: "https://picsum.photos/900/500?random=2",
-    content:
-      "Pemerintah secara resmi mengumumkan perluasan program pendidikan digital di seluruh wilayah Indonesia. Program ini bertujuan untuk memastikan setiap siswa, baik di kota maupun di daerah terpencil, dapat mengakses materi pembelajaran berbasis teknologi dengan mudah. " +
-      "Sejak peluncurannya dua tahun lalu, pendidikan digital telah membawa banyak manfaat. Guru dapat menggunakan platform interaktif untuk mengajar dengan lebih efektif, sementara siswa dapat mengakses materi belajar kapan saja dan dari mana saja. Pemerintah juga bekerja sama dengan berbagai perusahaan teknologi untuk menyediakan perangkat dan internet gratis kepada sekolah-sekolah yang masih belum memiliki fasilitas memadai. " +
-      "Selain itu, kurikulum digital 2025 juga telah diperbarui untuk menyesuaikan kebutuhan era modern, termasuk pengenalan literasi digital, pemrograman dasar, dan keamanan siber. Para ahli pendidikan menyatakan bahwa langkah ini adalah investasi jangka panjang yang penting untuk meningkatkan kualitas sumber daya manusia Indonesia di masa depan.",
-  },
-  
-  {
-    id: 3,
-    title: "Tim Nasional Berhasil Menang 3-0",
-    category: "Olahraga",
-    date: "8 Nov 2025",
-    image: "https://picsum.photos/900/500?random=3",
-    content:
-      "Tim nasional kembali menunjukkan performa gemilang setelah berhasil mengalahkan lawannya dengan skor telak 3-0 dalam laga persahabatan internasional tadi malam. Pertandingan berlangsung sangat sengit di babak pertama, namun Timnas berhasil mendominasi permainan pada babak kedua. " +
-      "Gol pertama dicetak melalui tendangan jarak jauh yang memukau dari lini tengah, disusul dengan aksi solo run dari pemain muda berbakat yang menambah keunggulan. Gol terakhir datang dari skema tendangan sudut yang berhasil dieksekusi dengan sempurna. " +
-      "Pelatih kepala menyatakan bahwa kemenangan ini adalah hasil kerja keras seluruh tim dan menjadi modal penting menjelang pertandingan kualifikasi yang akan datang. Para penggemar pun sangat antusias melihat perkembangan positif ini, berharap Timnas dapat terus mempertahankan momentum untuk meraih prestasi lebih besar di ajang internasional.",
-  },
-  
-];
-
 export default function NewsDetail({ darkMode }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const newsItem = dummyNews.find((n) => n.id === Number(id));
+  const newsItem = newsData.find((n) => n.id === Number(id));
 
   // STATE KOMENTAR
   const [comments, setComments] = useState([]);

@@ -1,3 +1,4 @@
+import { events } from "./data/eventsData.js";
 import { useState } from "react";
 import {
   FiCalendar,
@@ -122,66 +123,6 @@ export default function Events({ darkMode }) {
   const [savedEvents, setSavedEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // === DATA EVENT (tambah banyak supaya pagination terasa) ===
-  const events = [
-    {
-      id: 1,
-      title: "Festival Musik Kota 2025",
-      date: "12 Jan 2025",
-      location: "Jakarta",
-      attendees: 1200,
-      image: "https://picsum.photos/600/400?random=11",
-      category: "Hiburan",
-      description:
-        "Festival musik terbesar dengan lebih dari 20 artis tampil...",
-    },
-    {
-      id: 2,
-      title: "Workshop AI Dasar",
-      date: "20 Jan 2025",
-      location: "Bandung",
-      attendees: 350,
-      image: "https://picsum.photos/600/400?random=12",
-      category: "Teknologi",
-      description:
-        "Pelatihan mengenai Artificial Intelligence untuk pemula...",
-    },
-    {
-      id: 3,
-      title: "Pameran Kuliner Nusantara",
-      date: "5 Feb 2025",
-      location: "Surabaya",
-      attendees: 800,
-      image: "https://picsum.photos/600/400?random=13",
-      category: "Kuliner",
-      description:
-        "Pameran besar makanan khas dari seluruh Indonesia...",
-    },
-    // Dummy tambahan
-    {
-      id: 4,
-      title: "Pentas Seni Budaya 2025",
-      date: "15 Feb 2025",
-      location: "Yogyakarta",
-      attendees: 600,
-      image: "https://picsum.photos/600/400?random=14",
-      category: "Budaya",
-      description:
-        "Acara seni budaya dengan berbagai pertunjukan tari dan musik...",
-    },
-    {
-      id: 5,
-      title: "Seminar Bisnis UMKM",
-      date: "20 Feb 2025",
-      location: "Medan",
-      attendees: 450,
-      image: "https://picsum.photos/600/400?random=15",
-      category: "Bisnis",
-      description:
-        "Seminar tentang strategi pengembangan bisnis UMKM modern...",
-    },
-  ];
-
   /* === PAGINATION === */
   const itemsPerPage = 3;
   const totalPages = Math.ceil(events.length / itemsPerPage);
@@ -223,11 +164,11 @@ export default function Events({ darkMode }) {
       <div className="absolute inset-0 flex flex-col items-start justify-center px-10">
 
         <h1 className="text-3xl md:text-4xl font-bold drop-shadow text-white">
-          Temukan Event Terbaru di Sekitar Anda
+        Agenda Menarik di Sekitar Kamu
         </h1>
 
         <p className="mt-2 text-gray-200 text-sm md:text-base max-w-xl">
-          Jelajahi berbagai event menarik mulai dari musik, teknologi, kuliner, dan banyak lagi.
+        Ikuti berbagai acara pilihan yang dikemas informatif dan inspiratif, mulai dari talkshow, pameran, festival, hingga diskusi publik. 
         </p>
 
         <button

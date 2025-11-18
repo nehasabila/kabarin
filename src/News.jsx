@@ -1,3 +1,4 @@
+import { newsData } from "./data/newsData.js";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -18,153 +19,6 @@ function News({ darkMode }) {
 
   const navigate = useNavigate();
 
-  const newsData = [
-    {
-      id: 1,
-      title: "Teknologi AI Meningkat Pesat di Tahun 2025",
-      category: "Teknologi",
-      date: "10 Nov 2025",
-      image: "https://picsum.photos/600/400?random=1",
-      likes: 230,
-      views: 520,
-    },
-    {
-      id: 2,
-      title: "Pendidikan Digital Semakin Diperluas",
-      category: "Edukasi",
-      date: "9 Nov 2025",
-      image: "https://picsum.photos/600/400?random=2",
-      likes: 180,
-      views: 400,
-    },
-    {
-      id: 3,
-      title: "Tim Nasional Berhasil Menang 3-0",
-      category: "Olahraga",
-      date: "8 Nov 2025",
-      image: "https://picsum.photos/600/400?random=3",
-      likes: 250,
-      views: 800,
-    },
-    {
-      id: 4,
-      title: "Ekonomi Indonesia Mulai Stabil",
-      category: "Ekonomi",
-      date: "7 Nov 2025",
-      image: "https://picsum.photos/600/400?random=4",
-      likes: 160,
-      views: 300,
-    },
-    {
-      id: 5,
-      title: "Industri Hiburan Kembali Bergairah",
-      category: "Hiburan",
-      date: "6 Nov 2025",
-      image: "https://picsum.photos/600/400?random=5",
-      likes: 200,
-      views: 600,
-    },
-    {
-      id: 6,
-      title: "Startup AI Indonesia Mendapat Pendanaan Baru",
-      category: "Teknologi",
-      date: "5 Nov 2025",
-      image: "https://picsum.photos/600/400?random=6",
-      likes: 150,
-      views: 500,
-    },
-    {
-      id: 7,
-      title: "Event Olahraga Internasional Digelar di Jakarta",
-      category: "Olahraga",
-      date: "4 Nov 2025",
-      image: "https://picsum.photos/600/400?random=7",
-      likes: 170,
-      views: 450,
-    },
-    {
-      id: 8,
-      title: "Perusahaan Teknologi Indonesia Kembangkan Chip Lokal",
-      category: "Teknologi",
-      date: "11 Nov 2025",
-      image: "https://picsum.photos/600/400?random=8",
-      likes: 190,
-      views: 450,
-    },
-    {
-      id: 9,
-      title: "Universitas Besar Terapkan Kurikulum AI",
-      category: "Edukasi",
-      date: "10 Nov 2025",
-      image: "https://picsum.photos/600/400?random=9",
-      likes: 120,
-      views: 300,
-    },
-    {
-      id: 10,
-      title: "Timnas U-23 Menang Telak di Laga Persahabatan",
-      category: "Olahraga",
-      date: "9 Nov 2025",
-      image: "https://picsum.photos/600/400?random=10",
-      likes: 260,
-      views: 600,
-    },
-    {
-      id: 11,
-      title: "Pasar Saham Menguat Setelah Pengumuman Kebijakan Baru",
-      category: "Ekonomi",
-      date: "8 Nov 2025",
-      image: "https://picsum.photos/600/400?random=11",
-      likes: 170,
-      views: 480,
-    },
-    {
-      id: 12,
-      title: "Film Animasi Lokal Mendunia",
-      category: "Hiburan",
-      date: "7 Nov 2025",
-      image: "https://picsum.photos/600/400?random=12",
-      likes: 300,
-      views: 750,
-    },
-    {
-      id: 13,
-      title: "Startup Kesehatan Luncurkan Aplikasi Cek Kesehatan Online",
-      category: "Kesehatan",
-      date: "7 Nov 2025",
-      image: "https://picsum.photos/600/400?random=13",
-      likes: 140,
-      views: 350,
-    },
-    {
-      id: 14,
-      title: "Peneliti Temukan Spesies Baru di Laut Dalam",
-      category: "Sains",
-      date: "6 Nov 2025",
-      image: "https://picsum.photos/600/400?random=14",
-      likes: 220,
-      views: 500,
-    },
-    {
-      id: 15,
-      title: "Perkembangan Mobil Listrik Semakin Pesat",
-      category: "Otomotif",
-      date: "6 Nov 2025",
-      image: "https://picsum.photos/600/400?random=15",
-      likes: 210,
-      views: 440,
-    },
-    {
-      id: 16,
-      title: "Pariwisata Bali Mulai Pulih",
-      category: "Wisata",
-      date: "5 Nov 2025",
-      image: "https://picsum.photos/600/400?random=16",
-      likes: 300,
-      views: 780,
-    },
-  ];
-
   const trendingNews = [
     { id: 1, title: "Kebijakan Baru Pemerintah Soal Pendidikan 2025" },
     { id: 2, title: "Harga Beras Naik, Ekonomi Rumah Tangga Terdampak" },
@@ -173,20 +27,20 @@ function News({ darkMode }) {
     { id: 5, title: "Fenomena Cuaca Ekstrem Diprediksi Berlanjut" },
   ];
 
-  // 🎯 Filter berdasarkan kategori
+  // Filter berdasarkan kategori
   const filteredNews =
     category === "Semua"
       ? newsData
       : newsData.filter((item) => item.category === category);
 
-  // 🎯 Sorting berita setelah difilter
+  // Sorting berita setelah difilter
   const sortedNews = [...filteredNews].sort((a, b) => {
     if (filter === "populer") return b.views - a.views;
     if (filter === "disukai") return b.likes - a.likes;
     return new Date(b.date) - new Date(a.date);
   });
 
-  // 🔥 Infinite scroll
+  // Infinite scroll
   useEffect(() => {
     const container = listRef.current;
     if (!container) return;
@@ -453,7 +307,7 @@ function NewsCard({ item, darkMode, navigate }) {
         <p className="text-sm text-gray-400">{item.date}</p>
 
         <p className="text-sm text-gray-500 mt-2">
-          Teknologi AI semakin berkembang pesat dengan berbagai inovasi baru...
+        {item.content}
         </p>
 
         <div

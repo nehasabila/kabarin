@@ -59,7 +59,8 @@ function App({ darkMode }) {
                 Dari yang serius sampai yang rame, semuanya ada di Kabarin.
               </p>
 
-              <button className="px-10 py-2 my-5 mb-20 mx-5 rounded-lg text-sm font-medium transition bg-[#1785D9] hover:bg-[#1472BC] text-white">
+              <button onClick={() => navigate(`/news`)}
+              className="px-10 py-2 my-5 mb-20 mx-5 rounded-lg text-sm font-medium transition bg-[#1785D9] hover:bg-[#1472BC] text-white">
                 Baca Sekarang
               </button>
             </div>
