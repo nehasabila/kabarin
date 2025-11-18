@@ -53,10 +53,10 @@ Coba aplikasi secara langsung melalui link berikut:
 ### 📸 Screenshots
 
 #### 🏠 Home Page  
-![Home Preview](public\assets\Image\home.png)
+![Home Preview](public/assets/Image/home.png)
 
 #### 📰 News Detail Page  
-![News Preview](public\assets\Image\news.png)
+![News Preview](public/assets/Image/news.png)
 
 ---
 
