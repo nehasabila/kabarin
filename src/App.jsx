@@ -8,34 +8,35 @@ import {
   FiMessageCircle,
   FiBookmark,
 } from "react-icons/fi";
+import { newsData } from "./data/newsData.js";
 import { FaWhatsapp } from "react-icons/fa";
 
 function App({ darkMode }) {
   // ==== DATA BERITA LANGSUNG DI SINI ====
-  const beritaList = [
-    {
-      title: "Banjir Melanda Jakarta",
-      image: "https://picsum.photos/300/200?random=12",
-      date: "14 Feb 2025",
-      location: "Jakarta",
-      category: "Peristiwa",
-      desc: "Hujan deras menyebabkan beberapa titik banjir di wilayah Jakarta sejak dini hari.",
-    },
-    {
-      title: "Teknologi AI Terbaru Resmi Dirilis",
-      image: "https://picsum.photos/300/200?random=1",
-      date: "15 Feb 2025",
-      category: "Teknologi",
-      desc: "Perusahaan teknologi besar merilis AI generasi baru dengan kemampuan pemrosesan super cepat.",
-    },
-    {
-      title: "Harga Beras Naik di Beberapa Daerah",
-      image: "https://picsum.photos/300/200?random=2",
-      date: "13 Feb 2025",
-      category: "Ekonomi",
-      desc: "Kenaikan harga pangan kembali terjadi akibat pasokan yang menurun di beberapa provinsi.",
-    },
-  ];
+  // const beritaList = [
+  //   {
+  //     title: "Banjir Melanda Jakarta",
+  //     image: "https://picsum.photos/300/200?random=12",
+  //     date: "14 Feb 2025",
+  //     location: "Jakarta",
+  //     category: "Peristiwa",
+  //     desc: "Hujan deras menyebabkan beberapa titik banjir di wilayah Jakarta sejak dini hari.",
+  //   },
+  //   {
+  //     title: "Teknologi AI Terbaru Resmi Dirilis",
+  //     image: "https://picsum.photos/300/200?random=1",
+  //     date: "15 Feb 2025",
+  //     category: "Teknologi",
+  //     desc: "Perusahaan teknologi besar merilis AI generasi baru dengan kemampuan pemrosesan super cepat.",
+  //   },
+  //   {
+  //     title: "Harga Beras Naik di Beberapa Daerah",
+  //     image: "https://picsum.photos/300/200?random=2",
+  //     date: "13 Feb 2025",
+  //     category: "Ekonomi",
+  //     desc: "Kenaikan harga pangan kembali terjadi akibat pasokan yang menurun di beberapa provinsi.",
+  //   },
+  // ];
 
   return (
     <>
@@ -201,7 +202,7 @@ function App({ darkMode }) {
             <h2 className="text-3xl font-bold mb-6 text-center">Berita Terbaru</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {beritaList.map((news, index) => (
+              {newsData.slice(0, 3).map((news, index) => (
                 <div
                   key={index}
                   className={`rounded-lg overflow-hidden shadow-lg border cursor-pointer transition hover:opacity-90 ${

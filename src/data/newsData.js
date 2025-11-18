@@ -4,7 +4,7 @@ export const newsData = [
       title: "Teknologi AI Meningkat Pesat di Tahun 2025",
       category: "Teknologi",
       date: "10 Nov 2025",
-      image: "https://picsum.photos/600/400?random=1",
+      image: "/assets/Image/news1.jpg",
       likes: 230,
       views: 520,
       content:
@@ -15,7 +15,7 @@ export const newsData = [
       title: "Pendidikan Digital Semakin Diperluas",
       category: "Edukasi",
       date: "9 Nov 2025",
-      image: "https://picsum.photos/600/400?random=2",
+      image: "/assets/Image/news2.jpg",
       likes: 180,
       views: 400,
       content:
@@ -26,7 +26,7 @@ export const newsData = [
       title: "Tim Nasional Berhasil Menang 3-0",
       category: "Olahraga",
       date: "8 Nov 2025",
-      image: "https://picsum.photos/600/400?random=3",
+      image: "/assets/Image/news3.jpg",
       likes: 250,
       views: 800,
       content:
@@ -37,7 +37,7 @@ export const newsData = [
       title: "Ekonomi Indonesia Mulai Stabil",
       category: "Ekonomi",
       date: "7 Nov 2025",
-      image: "https://picsum.photos/600/400?random=4",
+      image: "/assets/Image/news4.jpg",
       likes: 160,
       views: 300,
       content:
@@ -48,7 +48,7 @@ export const newsData = [
       title: "Industri Hiburan Kembali Bergairah",
       category: "Hiburan",
       date: "6 Nov 2025",
-      image: "https://picsum.photos/600/400?random=5",
+      image: "/assets/Image/news5.jpg",
       likes: 200,
       views: 600,
       content:
@@ -59,7 +59,7 @@ export const newsData = [
       title: "Startup AI Indonesia Mendapat Pendanaan Baru",
       category: "Teknologi",
       date: "5 Nov 2025",
-      image: "https://picsum.photos/600/400?random=6",
+      image: "/assets/Image/news6.jpg",
       likes: 150,
       views: 500,
       content:
@@ -70,7 +70,7 @@ export const newsData = [
       title: "Event Olahraga Internasional Digelar di Jakarta",
       category: "Olahraga",
       date: "4 Nov 2025",
-      image: "https://picsum.photos/600/400?random=7",
+      image: "/assets/Image/news7.jpg",
       likes: 170,
       views: 450,
       content:
@@ -81,7 +81,7 @@ export const newsData = [
       title: "Perusahaan Teknologi Indonesia Kembangkan Chip Lokal",
       category: "Teknologi",
       date: "11 Nov 2025",
-      image: "https://picsum.photos/600/400?random=8",
+      image: "/assets/Image/news8.jpg",
       likes: 190,
       views: 450,
       content:

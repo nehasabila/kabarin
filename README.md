@@ -1,6 +1,6 @@
-# Kabarin | Portal Berita Modern
+# Kabarin. | Portal Berita Digital
 
-Kabarin adalah portal berita modern yang dibangun menggunakan React dan Tailwind CSS. Aplikasi ini menghadirkan mode gelap/terang, infinite scroll, serta desain responsif untuk pengalaman pengguna yang nyaman di berbagai perangkat.
+Kabarin adalah portal berita modern yang dibangun menggunakan React dan Tailwind CSS. Web ini menghadirkan mode gelap/terang, infinite scroll, serta desain responsif untuk pengalaman pengguna yang nyaman di berbagai perangkat.
 
 ---
 
@@ -56,7 +56,7 @@ Coba aplikasi secara langsung melalui link berikut:
 ![Home Preview](public/assets/Image/home.png)
 
 #### 📰 News Detail Page  
-![News Preview](public/assets/Image/news.png)
+![News Preview](public/assets/Image/newspage.png)
 
 ---
 
